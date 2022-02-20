@@ -2,8 +2,10 @@ import requests
 import json
 from config import keys
 
+
 class ConvertionException(Exception):
     pass
+
 
 class MoneyConverter:
     @staticmethod
@@ -29,4 +31,4 @@ class MoneyConverter:
 
         r = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={quote_ticker}&tsyms={base_ticker}')
         total_base = json.loads(r.content)[keys[base]]
-        return total_base
+        return total_base * amount
